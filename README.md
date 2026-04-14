@@ -158,13 +158,18 @@
   <div class="header-brand">언어행동연구소 온유</div>
   <div class="header-title">우리 아이 발달 체크리스트</div>
 </div>
+
 <div class="intro">
   <div class="intro-card">
     <div class="intro-label">사용 방법</div>
-    <div class="intro-text">아이의 연령대를 선택하고, 각 항목에 <strong>예</strong>(해당됨) 또는 <strong>아니오</strong>(해당 없음)로 답해 주세요. <strong>같은 영역에서 2개 이상 해당되거나, 언어 퇴행 항목이 해당되면</strong> 전문가 상담을 권장합니다.</div>
+    <div class="intro-text">
+      아이의 연령대를 선택하고, 각 항목에 <strong>예</strong>(해당됨) 또는 <strong>아니오</strong>(해당 없음)로 답해 주세요.
+      <strong>같은 영역에서 2개 이상 해당되거나, 언어 퇴행 항목이 해당되면</strong> 전문가 상담을 권장합니다.
+    </div>
     <div class="intro-note">이 체크리스트는 선별 도구이며 진단을 대체하지 않습니다. CDC 발달 이정표, DSM-5, M-CHAT-R/F 기준을 참고했습니다.</div>
   </div>
 </div>
+
 <div class="age-tabs-wrap">
   <div class="age-tabs" id="ageTabs">
     <button class="age-tab active" data-age="18-36">18–36개월</button>
@@ -174,12 +179,20 @@
     <button class="age-tab" data-age="school">만 8–9세</button>
   </div>
 </div>
+
 <div class="checklist-wrap" id="checklistWrap"></div>
+
 <div class="result-panel">
   <div class="result-inner">
     <div class="result-counts">
-      <div class="result-count-item"><div class="count-dot yes"></div><div><div class="count-label">해당됨</div><div class="count-num yes" id="yesCount">0</div></div></div>
-      <div class="result-count-item"><div class="count-dot no"></div><div><div class="count-label">응답함</div><div class="count-num no" id="totalCount">0</div></div></div>
+      <div class="result-count-item">
+        <div class="count-dot yes"></div>
+        <div><div class="count-label">해당됨</div><div class="count-num yes" id="yesCount">0</div></div>
+      </div>
+      <div class="result-count-item">
+        <div class="count-dot no"></div>
+        <div><div class="count-label">응답함</div><div class="count-num no" id="totalCount">0</div></div>
+      </div>
     </div>
     <div class="result-bar-wrap">
       <div class="result-bar-label" id="barLabel">항목에 응답해 주세요</div>
@@ -188,30 +201,38 @@
     <button class="result-cta-btn" id="showResultBtn">결과 보기</button>
   </div>
 </div>
+
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modal" style="position:relative">
     <button class="modal-close" id="modalClose">✕</button>
     <div class="modal-handle"></div>
     <div class="modal-title" id="modalTitle">체크리스트 결과</div>
     <div class="modal-subtitle" id="modalSubtitle"></div>
+
     <div class="modal-score-ring">
       <div class="ring-wrap">
         <svg class="ring-svg" viewBox="0 0 80 80">
           <circle class="ring-bg" cx="40" cy="40" r="32"/>
           <circle class="ring-fill" id="ringFill" cx="40" cy="40" r="32" stroke-dasharray="201" stroke-dashoffset="201"/>
         </svg>
-        <div class="ring-label"><div class="ring-num" id="ringNum">0</div><div class="ring-sub">해당</div></div>
+        <div class="ring-label">
+          <div class="ring-num" id="ringNum">0</div>
+          <div class="ring-sub">해당</div>
+        </div>
       </div>
       <div class="score-detail">
         <div class="score-detail-title" id="scoreTitle"></div>
         <div class="score-detail-desc" id="scoreDesc"></div>
       </div>
     </div>
+
     <div class="domain-results" id="domainResults"></div>
+
     <div class="modal-advice" id="modalAdvice">
       <div class="advice-label">박소현 BCBA의 안내</div>
       <div class="advice-text" id="adviceText"></div>
     </div>
+
     <div class="consult-box" id="consultBox" style="display:none">
       <div class="consult-urgent" id="consultUrgent" style="display:none">
         <span class="consult-urgent-icon">🚨</span>
@@ -239,12 +260,15 @@
         </div>
       </div>
     </div>
+
     <div class="modal-cta">
       <button class="modal-btn-secondary" id="resetBtn">다시 체크하기</button>
     </div>
   </div>
 </div>
+
 <div class="onyu-footer"><span>@onyou_abalab</span><span>언어행동연구소 온유</span></div>
+
 <script>
 const DATA = {
   "18-36": {
@@ -451,7 +475,17 @@ function buildSections() {
         }
         if (item.alert) badges.push(`<span class="item-badge badge-alert">적색신호</span>`);
 
-        html += `<div class="check-item" id="item-${item.id}-${ageKey}"><div class="item-top">${badges.length ? `<div class="item-badges">${badges.join('')}</div>` : ''}<div class="item-text">${item.text}</div></div>${item.sub ? `<div class="item-sub">${item.sub}</div>` : ''}<div class="item-actions"><button class="yn-btn yes-btn" onclick="setAnswer('${item.id}','${ageKey}','${domain.id}','yes')">✓ 예, 해당돼요</button><button class="yn-btn no-btn" onclick="setAnswer('${item.id}','${ageKey}','${domain.id}','no')">✕ 해당 없어요</button></div></div>`;
+        html += `<div class="check-item" id="item-${item.id}-${ageKey}">
+          <div class="item-top">
+            ${badges.length ? `<div class="item-badges">${badges.join('')}</div>` : ''}
+            <div class="item-text">${item.text}</div>
+          </div>
+          ${item.sub ? `<div class="item-sub">${item.sub}</div>` : ''}
+          <div class="item-actions">
+            <button class="yn-btn yes-btn" onclick="setAnswer('${item.id}','${ageKey}','${domain.id}','yes')">✓ 예, 해당돼요</button>
+            <button class="yn-btn no-btn" onclick="setAnswer('${item.id}','${ageKey}','${domain.id}','no')">✕ 해당 없어요</button>
+          </div>
+        </div>`;
       });
 
       html += `</div>`;
@@ -496,7 +530,10 @@ function updatePanel() {
   const pct = allItems > 0 ? Math.round((total / allItems) * 100) : 0;
 
   document.getElementById('barFill').style.width = pct + '%';
-  document.getElementById('barLabel').textContent = total === 0 ? '항목에 응답해 주세요' : pct < 100 ? `${total}/${allItems} 응답 완료` : '모든 항목 응답 완료 ✓';
+  document.getElementById('barLabel').textContent =
+    total === 0 ? '항목에 응답해 주세요' :
+    pct < 100 ? `${total}/${allItems} 응답 완료` :
+    '모든 항목 응답 완료 ✓';
 }
 
 function showResult() {
@@ -539,7 +576,7 @@ function showResult() {
   const hasLangAlert = langAlertItems.length > 0;
   const hasDomainTwo = Object.values(domainYes).some(v => v >= 2);
 
-  /* 수정된 핵심 판정 로직 */
+  /* 핵심 수정: 전체합 2개 기준 삭제 */
   const needsConsult = hasLangAlert || hasDomainTwo;
 
   let scoreTitle, scoreDesc, adviceText;
@@ -553,8 +590,12 @@ function showResult() {
     scoreDesc = '해당 항목이 있지만 한 영역에서 2개 미만입니다. 지속적으로 관찰하고, 걱정이 되신다면 전문가와 이야기해보세요.';
     adviceText = '"이 정도면 괜찮겠지" 하고 넘기지 마세요. 조기 발견과 조기 개입이 가장 효과적입니다.';
   } else {
-    scoreTitle = hasLangAlert ? '지금 바로 전문가 상담을 받아보세요' : '전문가 상담을 권장합니다';
-    scoreDesc = hasLangAlert ? '언어 퇴행 항목이 해당됩니다. 1개라도 해당되면 즉시 전문가와 확인이 필요합니다.' : '한 영역에서 2개 이상 해당됩니다. 빠른 전문가 상담을 권장합니다.';
+    scoreTitle = hasLangAlert
+      ? '지금 바로 전문가 상담을 받아보세요'
+      : '전문가 상담을 권장합니다';
+    scoreDesc = hasLangAlert
+      ? '언어 퇴행 항목이 해당됩니다. 1개라도 해당되면 즉시 전문가와 확인이 필요합니다.'
+      : '한 영역에서 2개 이상 해당됩니다. 빠른 전문가 상담을 권장합니다.';
     adviceText = '체크리스트는 선별 도구이며 진단을 의미하지 않습니다. 하지만 조기에 전문가와 이야기하는 것이 아이에게 가장 도움이 됩니다.';
   }
 
@@ -565,7 +606,7 @@ function showResult() {
   const consultBox = document.getElementById('consultBox');
   const consultUrgent = document.getElementById('consultUrgent');
 
-  /* 수정된 상담 박스 표시 조건 */
+  /* 핵심 수정: 상담권장일 때만 박스 노출 */
   consultBox.style.display = needsConsult ? 'block' : 'none';
   consultUrgent.style.display = hasLangAlert ? 'flex' : 'none';
 
@@ -584,7 +625,15 @@ function showResult() {
     const p = Math.round((yes / tot) * 100);
     const color = colorMap[d.id] || '#D97B8E';
 
-    return `<div class="domain-result-item"><div class="domain-result-name">${d.name}</div><div class="domain-mini-bar"><div class="domain-mini-fill" style="width:0%;background:${color}" data-pct="${p}"></div></div><div class="domain-result-count">${yes}/${tot}</div></div>`;
+    return `
+      <div class="domain-result-item">
+        <div class="domain-result-name">${d.name}</div>
+        <div class="domain-mini-bar">
+          <div class="domain-mini-fill" style="width:0%;background:${color}" data-pct="${p}"></div>
+        </div>
+        <div class="domain-result-count">${yes}/${tot}</div>
+      </div>
+    `;
   }).join('');
 
   document.getElementById('modalOverlay').classList.add('open');
